@@ -4,6 +4,8 @@ import numpy as np
 import pathlib
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from tensorflow import keras
+import tensorflow as tf
 
 def features_extractor(file):
         audio, sample_rate = librosa.load(file) 
@@ -49,4 +51,20 @@ def load_data():
     # testdata = DataLoader(BabyData(X_test,y_test))
     # return traindata, testdata
     return (X_train,y_train),(X_test,y_test)
+
+def load_model(model: keras.Model, filepath: str):
+    """
+    Load weights into a TensorFlow model from a .npz file.
+
+    Args:
+        model (keras.Model): The TensorFlow model to load weights into.
+        filepath (str): Path to the .npz file containing weights.
+    """
+    # Load the saved weights as a list of numpy arrays
+    with np.load(filepath) as data:
+        weights = [data[key] for key in sorted(data.files)]  # Extract weights in order
+
+    # Set the weights to the model
+    model.set_weights(weights)
+    print(f"Model weights loaded from {filepath}")
         

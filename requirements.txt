@@ -1,7 +1,7 @@
-torch
-torchvision
 librosa
 tqdm
 pandas
 seaborn
 matplotlib
+tensorflow
+gradio
