@@ -1,0 +1,7 @@
+torch
+torchvision
+librosa
+tqdm
+pandas
+seaborn
+matplotlib
